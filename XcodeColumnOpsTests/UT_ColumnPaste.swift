@@ -27,15 +27,15 @@ class ColumnPasteSpec: QuickSpec {
             result = []
         }
         
-        describe("pasting single selection") {
+        describe("pasting a single string") {
             
-            let selections = ["FOOBAR"]
+            let strings = ["FOOBAR"]
             
             context("at the end of file") {
                 
-                it("appends the selection to the end") {
+                it("appends the string to the end") {
                     // when
-                    result = sut.paste(selections, into: lines, at: (lines.count - 1, lines.last!.characters.count))
+                    result = sut.paste(strings, into: lines, at: (lines.count - 1, lines.last!.characters.count))
                     
                     // then
                     expect(result).to(equal([
@@ -50,9 +50,9 @@ class ColumnPasteSpec: QuickSpec {
             
             context("at an inner location") {
                 
-                it("inserts the selection at the cursor") {
+                it("inserts the string at the cursor") {
                     // when
-                    result = sut.paste(selections, into: lines, at: (0, 2))
+                    result = sut.paste(strings, into: lines, at: (0, 2))
                     
                     // then
                     expect(result).to(equal([
@@ -67,28 +67,28 @@ class ColumnPasteSpec: QuickSpec {
             
         }
         
-        describe("pasting multi selection") {
+        describe("pasting strings from multiselection") {
             
-            let selections = ["FOOBAR", "QUUX", "STUFF"]
+            let strings = ["FOOBAR", "QUUX", "STUFF"]
 
             context("at the end of file") {
                 
                 let location: PasteLocation = (lines.count - 1, lines.last!.characters.count)
                 
-                it("appends the first selection to the last line with a terminating newline") {
+                it("appends the first string to the last line with a terminating newline") {
                     // when
-                    result = sut.paste(selections, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: location)
                     
                     // then
-                    expect(result[lines.count - 1]).to(equal(lines.last! + selections.first! + "\n"))
+                    expect(result[lines.count - 1]).to(equal(lines.last! + strings.first! + "\n"))
                 }
                 
-                it("adds (<selection count> - 1) new lines") {
+                it("adds (<string count> - 1) new lines") {
                     // when
-                    result = sut.paste(selections, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: location)
                     
                     // then
-                    expect(result.count).to(equal(lines.count + selections.count - 1))
+                    expect(result.count).to(equal(lines.count + strings.count - 1))
                 }
                 
                 it("fills inserted lines with spaces up to the cursor's column") {
@@ -96,16 +96,16 @@ class ColumnPasteSpec: QuickSpec {
                     let padding = String(repeating: " ", count: location.column)
 
                     // when
-                    result = sut.paste(selections, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: location)
                     
                     // then
                     expect(result[result.count - 2].hasPrefix(padding)).to(beTrue())
                     expect(result[result.count - 1].hasPrefix(padding)).to(beTrue())
                 }
                 
-                it("appends each subsequent selection at the end of the inserted padded lines") {
+                it("appends each subsequent string at the end of the inserted padded lines") {
                     // when
-                    result = sut.paste(selections, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: location)
                     
                     // then
                     expect(result).to(equal([
@@ -123,38 +123,38 @@ class ColumnPasteSpec: QuickSpec {
             context("at an inner location") {
                 
                 let location: PasteLocation = (0, 2)
-                let overflowingSelections = ["RED", "GREEN", "BLUE", "YELLOW", "BROWN"]
+                let overflowingStrings = ["RED", "GREEN", "BLUE", "YELLOW", "BROWN"]
                 
-                it("inserts the first selection at the cursor") {
+                it("inserts the first string at the cursor") {
                     // when
-                    result = sut.paste(selections, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: location)
                     
                     // then
                     expect(result[location.line]).to(equal("apFOOBARple juice\n"))
                 }
                 
-                context("there are more than (<EOF's line#> - <cursor's line#> + 1) selections") {
+                context("there are more than (<EOF's line#> - <cursor's line#> + 1) strings") {
                     
-                    it("adds (<selection count> - (<EOF's line#> - <cursor's line#> + 1)) new lines") {
+                    it("adds (<string count> - (<EOF's line#> - <cursor's line#> + 1)) new lines") {
                         // when
-                        result = sut.paste(overflowingSelections, into: lines, at: location)
+                        result = sut.paste(overflowingStrings, into: lines, at: location)
 
                         // then
-                        expect(result.count).to(equal(lines.count + overflowingSelections.count - (lines.count - 1 - location.line + 1)))
+                        expect(result.count).to(equal(lines.count + overflowingStrings.count - (lines.count - 1 - location.line + 1)))
                     }
                     
                 }
                 
-                it("pads the (<selection count> - 1) consecutive lines starting from (<cursor's line#> + 1) " +
+                it("pads the (<string count> - 1) consecutive lines starting from (<cursor's line#> + 1) " +
                    "with spaces up to the cursor's column if necessary") {
                     // given
                     let padding = String(repeating: " ", count: location.column)
                     
                     // when
-                    result = sut.paste(overflowingSelections, into: lines, at: location)
+                    result = sut.paste(overflowingStrings, into: lines, at: location)
                     
                     // then
-                    for i in location.line..<location.line + overflowingSelections.count {
+                    for i in location.line..<location.line + overflowingStrings.count {
                         if i >= result.count {
                             expect(true).to(beFalse())
                             break
@@ -163,10 +163,10 @@ class ColumnPasteSpec: QuickSpec {
                     }
                 }
                 
-                it("inserts the Nth selection (N in 0..<selection count>-1) at the cursor's column" +
+                it("inserts the Nth string (N in 0..<string count>-1) at the cursor's column" +
                    "in the (<cursor's line#> + N)th line") {
                     // when
-                    result = sut.paste(overflowingSelections, into: lines, at: location)
+                    result = sut.paste(overflowingStrings, into: lines, at: location)
 
                     // then
                     expect(result).to(equal([

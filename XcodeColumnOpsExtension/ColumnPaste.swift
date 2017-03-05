@@ -12,13 +12,13 @@ typealias PasteLocation = (line: NSInteger, column: NSInteger)
 
 class ColumnPaste {
     
-    func paste(_ selections: [String],
+    func paste(_ strings: [String],
                into lines: [String],
                at location: PasteLocation) -> [String] {
         var updatedLines = lines
         
         // 1. extend with empty lines
-        let newLineCount = selections.count - (lines.count - location.line)
+        let newLineCount = strings.count - (lines.count - location.line)
         if newLineCount > 0 {
             if let lastLine = updatedLines.last, !lastLine.hasSuffix("\n") {
                 updatedLines[updatedLines.count - 1] = lastLine.appending("\n")
@@ -28,9 +28,9 @@ class ColumnPaste {
         }
         
         // 2. insert selection
-        for s in 0 ..< selections.count {
+        for s in 0 ..< strings.count {
             var line = updatedLines[location.line + s]
-            let selection = selections[s]
+            let string = strings[s]
             
             // 2.a. apply padding
             let insertionIndex: String.CharacterView.Index
@@ -50,7 +50,7 @@ class ColumnPaste {
             }
             
             // 2.b. insert selection
-            line.characters.insert(contentsOf: selection.characters, at: insertionIndex)
+            line.characters.insert(contentsOf: string.characters, at: insertionIndex)
             updatedLines[location.line + s] = line
         }
         

@@ -27,7 +27,7 @@ class ColumnPasteCommand: NSObject, XCSourceEditorCommand {
             return
         }
         
-        let selections = plainText.components(separatedBy: .newlines)
+        let strings = plainText.components(separatedBy: .newlines)
 
         let columnPaste = ColumnPaste()
         
@@ -35,10 +35,10 @@ class ColumnPasteCommand: NSObject, XCSourceEditorCommand {
         let cursorRange = invocation.buffer.selections.firstObject as! XCSourceTextRange
         let location = (line: cursorRange.start.line, column: cursorRange.start.column)
 
-        let updatedLines = columnPaste.paste(selections, into: lines, at: location)
-        let changedLines = Array(updatedLines[location.line ..< location.line + selections.count])
+        let updatedLines = columnPaste.paste(strings, into: lines, at: location)
+        let changedLines = Array(updatedLines[location.line ..< location.line + strings.count])
         let updatedRange = NSRange(location: location.line,
-                                   length: min(selections.count, invocation.buffer.lines.count - location.line))
+                                   length: min(strings.count, invocation.buffer.lines.count - location.line))
         invocation.buffer.lines.replaceObjects(in: updatedRange, withObjectsFrom: changedLines)
         
         completionHandler(nil)
