@@ -13,7 +13,7 @@
 		E8A9340D1E6B2B73007B391D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9340C1E6B2B73007B391D /* Cocoa.framework */; };
 		E8A934121E6B2B73007B391D /* SourceEditorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A934111E6B2B73007B391D /* SourceEditorExtension.swift */; };
 		E8A934141E6B2B73007B391D /* SourceEditorCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A934131E6B2B73007B391D /* SourceEditorCommand.swift */; };
-		E8A934181E6B2B73007B391D /* XcodeBlockPasteExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E8A9340A1E6B2B73007B391D /* XcodeBlockPasteExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E8A934181E6B2B73007B391D /* XcodeBlockPaste.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E8A9340A1E6B2B73007B391D /* XcodeBlockPaste.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E8A934241E6B2C4F007B391D /* UT_BlockPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A934231E6B2C4F007B391D /* UT_BlockPaste.swift */; };
 		E8A9342C1E6B2DAD007B391D /* BlockPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9342B1E6B2DAD007B391D /* BlockPaste.swift */; };
 		E8A9342D1E6B2DAD007B391D /* BlockPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A9342B1E6B2DAD007B391D /* BlockPaste.swift */; };
@@ -47,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				E8A934181E6B2B73007B391D /* XcodeBlockPasteExtension.appex in Embed App Extensions */,
+				E8A934181E6B2B73007B391D /* XcodeBlockPaste.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,7 +71,7 @@
 		E8A933FB1E6B2B48007B391D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8A933FE1E6B2B48007B391D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E8A934001E6B2B48007B391D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8A9340A1E6B2B73007B391D /* XcodeBlockPasteExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = XcodeBlockPasteExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8A9340A1E6B2B73007B391D /* XcodeBlockPaste.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = XcodeBlockPaste.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A9340C1E6B2B73007B391D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E8A934101E6B2B73007B391D /* XcodeBlockPasteExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodeBlockPasteExtension.entitlements; sourceTree = "<group>"; };
 		E8A934111E6B2B73007B391D /* SourceEditorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceEditorExtension.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				E8A933F61E6B2B47007B391D /* XcodeBlockPaste.app */,
-				E8A9340A1E6B2B73007B391D /* XcodeBlockPasteExtension.appex */,
+				E8A9340A1E6B2B73007B391D /* XcodeBlockPaste.appex */,
 				E8A934211E6B2C4F007B391D /* XcodeBlockPasteTests.xctest */,
 			);
 			name = Products;
@@ -220,7 +220,7 @@
 			);
 			name = XcodeBlockPasteExtension;
 			productName = XcodeBlockPasteExtension;
-			productReference = E8A9340A1E6B2B73007B391D /* XcodeBlockPasteExtension.appex */;
+			productReference = E8A9340A1E6B2B73007B391D /* XcodeBlockPaste.appex */;
 			productType = "com.apple.product-type.xcode-extension";
 		};
 		E8A934201E6B2C4F007B391D /* XcodeBlockPasteTests */ = {
@@ -495,7 +495,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cocoagrinder.XcodeBlockPaste.XcodeBlockPasteExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XcodeBlockPaste;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -510,7 +510,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = me.cocoagrinder.XcodeBlockPaste.XcodeBlockPasteExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XcodeBlockPaste;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
