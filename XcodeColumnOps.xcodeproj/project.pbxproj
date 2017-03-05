@@ -12,6 +12,7 @@
 		E81EC28A1E6C646400E84EB6 /* ColumnCloningPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81EC2881E6C646400E84EB6 /* ColumnCloningPaste.swift */; };
 		E81EC28C1E6C66F600E84EB6 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81EC28B1E6C66F600E84EB6 /* Text.swift */; };
 		E81EC28D1E6C66F600E84EB6 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81EC28B1E6C66F600E84EB6 /* Text.swift */; };
+		E8A8E0041E6C8DAC00B743E9 /* ColumnCloningPasteCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A8E0031E6C8DAC00B743E9 /* ColumnCloningPasteCommand.swift */; };
 		E8A933FA1E6B2B48007B391D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A933F91E6B2B48007B391D /* AppDelegate.swift */; };
 		E8A933FC1E6B2B48007B391D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8A933FB1E6B2B48007B391D /* Assets.xcassets */; };
 		E8A933FF1E6B2B48007B391D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A933FD1E6B2B48007B391D /* MainMenu.xib */; };
@@ -68,6 +69,7 @@
 		E81EC2861E6C4E8000E84EB6 /* UT_ColumnCloningPaste.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UT_ColumnCloningPaste.swift; sourceTree = "<group>"; };
 		E81EC2881E6C646400E84EB6 /* ColumnCloningPaste.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColumnCloningPaste.swift; sourceTree = "<group>"; };
 		E81EC28B1E6C66F600E84EB6 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		E8A8E0031E6C8DAC00B743E9 /* ColumnCloningPasteCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColumnCloningPasteCommand.swift; sourceTree = "<group>"; };
 		E8A933F61E6B2B47007B391D /* XcodeColumnOps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeColumnOps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A933F91E6B2B48007B391D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8A933FB1E6B2B48007B391D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -159,13 +161,13 @@
 		E8A9340E1E6B2B73007B391D /* XcodeColumnOpsExtension */ = {
 			isa = PBXGroup;
 			children = (
-				E8A9342B1E6B2DAD007B391D /* ColumnPaste.swift */,
-				E81EC2881E6C646400E84EB6 /* ColumnCloningPaste.swift */,
-				E8A934111E6B2B73007B391D /* SourceEditorExtension.swift */,
-				E8A934131E6B2B73007B391D /* ColumnPasteCommand.swift */,
-				E81EC28B1E6C66F600E84EB6 /* Text.swift */,
-				E8A934151E6B2B73007B391D /* Info.plist */,
 				E8A9340F1E6B2B73007B391D /* Supporting Files */,
+				E81EC2881E6C646400E84EB6 /* ColumnCloningPaste.swift */,
+				E8A8E0031E6C8DAC00B743E9 /* ColumnCloningPasteCommand.swift */,
+				E8A9342B1E6B2DAD007B391D /* ColumnPaste.swift */,
+				E8A934131E6B2B73007B391D /* ColumnPasteCommand.swift */,
+				E8A934111E6B2B73007B391D /* SourceEditorExtension.swift */,
+				E81EC28B1E6C66F600E84EB6 /* Text.swift */,
 				E8C3995D1E6CAAF000BB4318 /* Text+XcodeKit.swift */,
 			);
 			path = XcodeColumnOpsExtension;
@@ -174,6 +176,7 @@
 		E8A9340F1E6B2B73007B391D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E8A934151E6B2B73007B391D /* Info.plist */,
 				E8A934101E6B2B73007B391D /* XcodeColumnOpsExtension.entitlements */,
 			);
 			name = "Supporting Files";
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A8E0041E6C8DAC00B743E9 /* ColumnCloningPasteCommand.swift in Sources */,
 				E8C3995E1E6CAAF000BB4318 /* Text+XcodeKit.swift in Sources */,
 				E81EC2891E6C646400E84EB6 /* ColumnCloningPaste.swift in Sources */,
 				E81EC28C1E6C66F600E84EB6 /* Text.swift in Sources */,

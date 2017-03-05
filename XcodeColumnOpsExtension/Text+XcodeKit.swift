@@ -30,8 +30,8 @@ extension TextRange {
 }
 
 extension XCSourceTextRange {
-    init(textRange: TextRange) {
-        self.start = XCSourceTextPosition(textPosition: textRange.start)
-        self.end = XCSourceTextPosition(textPosition: textRange.end)
+    convenience init(textRange: TextRange) {
+        self.init(start: XCSourceTextPosition(textPosition: textRange.start),
+                  end: XCSourceTextPosition(textPosition: textRange.end))
     }
 }
