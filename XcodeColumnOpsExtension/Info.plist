@@ -36,6 +36,14 @@
 					<key>XCSourceEditorCommandName</key>
 					<string>Paste Columns</string>
 				</dict>
+				<dict>
+					<key>XCSourceEditorCommandClassName</key>
+					<string>$(PRODUCT_MODULE_NAME).ColumnCloningPasteCommand</string>
+					<key>XCSourceEditorCommandIdentifier</key>
+					<string>$(PRODUCT_BUNDLE_IDENTIFIER).ColumnCloningPasteCommand</string>
+					<key>XCSourceEditorCommandName</key>
+					<string>Paste Columns Along Selection</string>
+				</dict>
 			</array>
 			<key>XCSourceEditorExtensionPrincipalClass</key>
 			<string>$(PRODUCT_MODULE_NAME).SourceEditorExtension</string>
