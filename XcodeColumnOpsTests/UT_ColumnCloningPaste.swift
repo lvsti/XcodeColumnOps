@@ -256,8 +256,8 @@ class ColumnCloningPasteSpec: QuickSpec {
                     for i in start.line ... end.line {
                         let padCount = start.column - lines[i].characters.count
                         if padCount > 0 {
-                            expect(result.0[i].hasPrefix(lines[i])).to(beTrue())
-                            expect(result.0[i].hasSuffix(String(repeating: " ", count: padCount))).to(beTrue())
+                            let prefix = i == lines.count ? lines[i] : lines[i].substring(to: lines[i].index(before: lines[i].endIndex))
+                            expect(result.0[i].hasPrefix(prefix + String(repeating: " ", count: padCount))).to(beTrue())
                         }
                     }
                 }
@@ -376,8 +376,8 @@ class ColumnCloningPasteSpec: QuickSpec {
                     for i in start1.line ... end2.line {
                         let padCount = start1.column - lines[i].characters.count
                         if padCount > 0 {
-                            expect(result.0[i].hasPrefix(lines[i])).to(beTrue())
-                            expect(result.0[i].hasSuffix(String(repeating: " ", count: padCount))).to(beTrue())
+                            let prefix = i == lines.count ? lines[i] : lines[i].substring(to: lines[i].index(before: lines[i].endIndex))
+                            expect(result.0[i].hasPrefix(prefix + String(repeating: " ", count: padCount))).to(beTrue())
                         }
                     }
                 }
