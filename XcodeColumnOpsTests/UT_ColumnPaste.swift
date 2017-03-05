@@ -9,6 +9,11 @@
 import Quick
 import Nimble
 
+struct Cursor: TextPosition {
+    var line: Int
+    var column: Int
+}
+
 class ColumnPasteSpec: QuickSpec {
 
     override func spec() {
@@ -35,7 +40,7 @@ class ColumnPasteSpec: QuickSpec {
                 
                 it("appends the string to the end") {
                     // when
-                    result = sut.paste(strings, into: lines, at: (lines.count - 1, lines.last!.characters.count))
+                    result = sut.paste(strings, into: lines, at: Cursor(line: lines.count - 1, column: lines.last!.characters.count))
                     
                     // then
                     expect(result).to(equal([
@@ -52,7 +57,7 @@ class ColumnPasteSpec: QuickSpec {
                 
                 it("inserts the string at the cursor") {
                     // when
-                    result = sut.paste(strings, into: lines, at: (0, 2))
+                    result = sut.paste(strings, into: lines, at: Cursor(line: 0, column: 2))
                     
                     // then
                     expect(result).to(equal([
@@ -73,11 +78,11 @@ class ColumnPasteSpec: QuickSpec {
 
             context("at the end of file") {
                 
-                let location: PasteLocation = (lines.count - 1, lines.last!.characters.count)
+                let cursor = Cursor(line: lines.count - 1, column: lines.last!.characters.count)
                 
                 it("appends the first string to the last line with a terminating newline") {
                     // when
-                    result = sut.paste(strings, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: cursor)
                     
                     // then
                     expect(result[lines.count - 1]).to(equal(lines.last! + strings.first! + "\n"))
@@ -85,7 +90,7 @@ class ColumnPasteSpec: QuickSpec {
                 
                 it("adds (<string count> - 1) new lines") {
                     // when
-                    result = sut.paste(strings, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: cursor)
                     
                     // then
                     expect(result.count).to(equal(lines.count + strings.count - 1))
@@ -93,10 +98,10 @@ class ColumnPasteSpec: QuickSpec {
                 
                 it("fills inserted lines with spaces up to the cursor's column") {
                     // given
-                    let padding = String(repeating: " ", count: location.column)
+                    let padding = String(repeating: " ", count: cursor.column)
 
                     // when
-                    result = sut.paste(strings, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: cursor)
                     
                     // then
                     expect(result[result.count - 2].hasPrefix(padding)).to(beTrue())
@@ -105,7 +110,7 @@ class ColumnPasteSpec: QuickSpec {
                 
                 it("appends each subsequent string at the end of the inserted padded lines") {
                     // when
-                    result = sut.paste(strings, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: cursor)
                     
                     // then
                     expect(result).to(equal([
@@ -122,25 +127,25 @@ class ColumnPasteSpec: QuickSpec {
             
             context("at an inner location") {
                 
-                let location: PasteLocation = (0, 2)
+                let cursor = Cursor(line: 0, column: 2)
                 let overflowingStrings = ["RED", "GREEN", "BLUE", "YELLOW", "BROWN"]
                 
                 it("inserts the first string at the cursor") {
                     // when
-                    result = sut.paste(strings, into: lines, at: location)
+                    result = sut.paste(strings, into: lines, at: cursor)
                     
                     // then
-                    expect(result[location.line]).to(equal("apFOOBARple juice\n"))
+                    expect(result[cursor.line]).to(equal("apFOOBARple juice\n"))
                 }
                 
                 context("there are more than (<EOF's line#> - <cursor's line#> + 1) strings") {
                     
                     it("adds (<string count> - (<EOF's line#> - <cursor's line#> + 1)) new lines") {
                         // when
-                        result = sut.paste(overflowingStrings, into: lines, at: location)
+                        result = sut.paste(overflowingStrings, into: lines, at: cursor)
 
                         // then
-                        expect(result.count).to(equal(lines.count + overflowingStrings.count - (lines.count - 1 - location.line + 1)))
+                        expect(result.count).to(equal(lines.count + overflowingStrings.count - (lines.count - 1 - cursor.line + 1)))
                     }
                     
                 }
@@ -148,25 +153,25 @@ class ColumnPasteSpec: QuickSpec {
                 it("pads the (<string count> - 1) consecutive lines starting from (<cursor's line#> + 1) " +
                    "with spaces up to the cursor's column if necessary") {
                     // given
-                    let padding = String(repeating: " ", count: location.column)
+                    let padding = String(repeating: " ", count: cursor.column)
                     
                     // when
-                    result = sut.paste(overflowingStrings, into: lines, at: location)
+                    result = sut.paste(overflowingStrings, into: lines, at: cursor)
                     
                     // then
-                    for i in location.line..<location.line + overflowingStrings.count {
+                    for i in cursor.line..<cursor.line + overflowingStrings.count {
                         if i >= result.count {
                             expect(true).to(beFalse())
                             break
                         }
-                        expect(result[i].hasPrefix(padding) || (i < lines.count && lines[i].characters.count >= location.column)).to(beTrue())
+                        expect(result[i].hasPrefix(padding) || (i < lines.count && lines[i].characters.count >= cursor.column)).to(beTrue())
                     }
                 }
                 
                 it("inserts the Nth string (N in 0..<string count>-1) at the cursor's column" +
                    "in the (<cursor's line#> + N)th line") {
                     // when
-                    result = sut.paste(overflowingStrings, into: lines, at: location)
+                    result = sut.paste(overflowingStrings, into: lines, at: cursor)
 
                     // then
                     expect(result).to(equal([

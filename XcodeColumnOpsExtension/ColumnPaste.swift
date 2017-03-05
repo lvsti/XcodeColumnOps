@@ -8,17 +8,16 @@
 
 import Foundation
 
-typealias PasteLocation = (line: NSInteger, column: NSInteger)
-
 class ColumnPaste {
     
+    /// Successively pastes `strings` into `lines` starting at the given `position`, in column mode
     func paste(_ strings: [String],
                into lines: [String],
-               at location: PasteLocation) -> [String] {
+               at position: TextPosition) -> [String] {
         var updatedLines = lines
         
         // 1. extend with empty lines
-        let newLineCount = strings.count - (lines.count - location.line)
+        let newLineCount = strings.count - (lines.count - position.line)
         if newLineCount > 0 {
             if let lastLine = updatedLines.last, !lastLine.hasSuffix("\n") {
                 updatedLines[updatedLines.count - 1] = lastLine.appending("\n")
@@ -29,7 +28,7 @@ class ColumnPaste {
         
         // 2. insert selection
         for s in 0 ..< strings.count {
-            var line = updatedLines[location.line + s]
+            var line = updatedLines[position.line + s]
             let string = strings[s]
             
             // 2.a. apply padding
@@ -37,21 +36,21 @@ class ColumnPaste {
             
             if let newLineIndex = line.characters.index(of: "\n") {
                 let distance = line.characters.distance(from: line.characters.startIndex, to: newLineIndex)
-                if location.column > distance {
-                    let padding = String(repeating: " ", count: location.column - distance)
+                if position.column > distance {
+                    let padding = String(repeating: " ", count: position.column - distance)
                     line.characters.insert(contentsOf: padding.characters, at: newLineIndex)
                 }
-                insertionIndex = line.characters.index(line.characters.startIndex, offsetBy: location.column)
-            } else if location.column >= line.characters.count {
-                line += String(repeating: " ", count: location.column - line.characters.count)
+                insertionIndex = line.characters.index(line.characters.startIndex, offsetBy: position.column)
+            } else if position.column >= line.characters.count {
+                line += String(repeating: " ", count: position.column - line.characters.count)
                 insertionIndex = line.characters.endIndex
             } else {
-                insertionIndex = line.characters.index(line.characters.startIndex, offsetBy: location.column)
+                insertionIndex = line.characters.index(line.characters.startIndex, offsetBy: position.column)
             }
             
             // 2.b. insert selection
             line.characters.insert(contentsOf: string.characters, at: insertionIndex)
-            updatedLines[location.line + s] = line
+            updatedLines[position.line + s] = line
         }
         
         return updatedLines
