@@ -23,23 +23,6 @@
 		E8A934341E6B441A007B391D /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8A9342F1E6B2E93007B391D /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E8A934161E6B2B73007B391D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8A933EE1E6B2B47007B391D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E8A934091E6B2B73007B391D;
-			remoteInfo = XcodeBlockPasteExtension;
-		};
-		E8A934261E6B2C4F007B391D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8A933EE1E6B2B47007B391D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E8A933F51E6B2B47007B391D;
-			remoteInfo = XcodeBlockPaste;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		E8A9341C1E6B2B73007B391D /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -199,7 +182,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E8A934171E6B2B73007B391D /* PBXTargetDependency */,
 			);
 			name = XcodeBlockPaste;
 			productName = XcodeBlockPaste;
@@ -235,7 +217,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				E8A934271E6B2C4F007B391D /* PBXTargetDependency */,
 			);
 			name = XcodeBlockPasteTests;
 			productName = XcodeBlockPasteTests;
@@ -342,19 +323,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E8A934171E6B2B73007B391D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E8A934091E6B2B73007B391D /* XcodeBlockPasteExtension */;
-			targetProxy = E8A934161E6B2B73007B391D /* PBXContainerItemProxy */;
-		};
-		E8A934271E6B2C4F007B391D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E8A933F51E6B2B47007B391D /* XcodeBlockPaste */;
-			targetProxy = E8A934261E6B2C4F007B391D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E8A933FD1E6B2B48007B391D /* MainMenu.xib */ = {
@@ -519,7 +487,6 @@
 		E8A934291E6B2C4F007B391D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -530,14 +497,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.cocoagrinder.XcodeBlockPasteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XcodeBlockPaste.app/Contents/MacOS/XcodeBlockPaste";
 			};
 			name = Debug;
 		};
 		E8A9342A1E6B2C4F007B391D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -548,7 +513,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.cocoagrinder.XcodeBlockPasteTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XcodeBlockPaste.app/Contents/MacOS/XcodeBlockPaste";
 			};
 			name = Release;
 		};
