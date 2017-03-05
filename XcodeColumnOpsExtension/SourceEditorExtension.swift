@@ -1,6 +1,6 @@
 //
 //  SourceEditorExtension.swift
-//  XcodeBlockPasteExtension
+//  XcodeColumnOpsExtension
 //
 //  Created by Tamas Lustyik on 2017. 03. 04..
 //  Copyright © 2017. Tamas Lustyik. All rights reserved.

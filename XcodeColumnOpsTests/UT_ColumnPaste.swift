@@ -1,6 +1,6 @@
 //
-//  UT_BlockPaste.swift
-//  XcodeBlockPasteTests
+//  UT_ColumnPaste.swift
+//  XcodeColumnOpsTests
 //
 //  Created by Tamas Lustyik on 2017. 03. 04..
 //  Copyright © 2017. Tamas Lustyik. All rights reserved.
@@ -9,11 +9,11 @@
 import Quick
 import Nimble
 
-class BlockPasteSpec: QuickSpec {
+class ColumnPasteSpec: QuickSpec {
 
     override func spec() {
         
-        var sut: BlockPaste!
+        var sut: ColumnPaste!
         var result: [String] = []
         let lines = [
             "apple juice\n",
@@ -23,7 +23,7 @@ class BlockPasteSpec: QuickSpec {
         ]
         
         beforeEach {
-            sut = BlockPaste()
+            sut = ColumnPaste()
             result = []
         }
         

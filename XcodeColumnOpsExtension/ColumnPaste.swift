@@ -1,6 +1,6 @@
 //
-//  BlockPaste.swift
-//  XcodeBlockPaste
+//  ColumnPaste.swift
+//  XcodeColumnOps
 //
 //  Created by Tamas Lustyik on 2017. 03. 04..
 //  Copyright © 2017. Tamas Lustyik. All rights reserved.
@@ -10,7 +10,7 @@ import Foundation
 
 typealias PasteLocation = (line: NSInteger, column: NSInteger)
 
-class BlockPaste {
+class ColumnPaste {
     
     func paste(_ selections: [String],
                into lines: [String],
