@@ -8,24 +8,25 @@
 
 import Foundation
 
-protocol TextPosition {
-    var line: Int { get }
-    var column: Int { get }
+struct TextPosition {
+    var line: Int
+    var column: Int
 }
 
-extension Equatable where Self: TextPosition {}
-
-func ==(lhs: TextPosition, rhs: TextPosition) -> Bool {
-    return lhs.line == rhs.line && lhs.column == rhs.column
+extension TextPosition: Equatable {
+    static func ==(lhs: TextPosition, rhs: TextPosition) -> Bool {
+        return lhs.line == rhs.line && lhs.column == rhs.column
+    }
 }
 
-protocol TextRange {
-    var start: TextPosition { get }
-    var end: TextPosition { get }
+struct TextRange {
+    var start: TextPosition
+    var end: TextPosition
 }
 
-extension Equatable where Self: TextRange {}
-
-func ==(lhs: TextRange, rhs: TextRange) -> Bool {
-    return lhs.start == rhs.start && lhs.end == rhs.end
+extension TextRange: Equatable {
+    static func ==(lhs: TextRange, rhs: TextRange) -> Bool {
+        return lhs.start == rhs.start && lhs.end == rhs.end
+    }
 }
+

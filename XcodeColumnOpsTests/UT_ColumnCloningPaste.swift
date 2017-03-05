@@ -9,11 +9,6 @@
 import Quick
 import Nimble
 
-struct Selection: TextRange {
-    var start: TextPosition
-    var end: TextPosition
-}
-
 
 class ColumnCloningPasteSpec: QuickSpec {
     
@@ -36,8 +31,8 @@ class ColumnCloningPasteSpec: QuickSpec {
         
         describe("pasting to an empty selection (blinking cursor)") {
             
-            let cursor = Cursor(line: 0, column: 5)
-            let selections = [Selection(start: cursor, end: cursor)]
+            let cursor = TextPosition(line: 0, column: 5)
+            let selections = [TextRange(start: cursor, end: cursor)]
 
             context("the string has newlines") {
 
@@ -95,16 +90,16 @@ class ColumnCloningPasteSpec: QuickSpec {
                 
                 // then
                 expect(result.1).to(haveCount(1))
-                expect(result.1.first! == selections.first!).to(beTrue())
+                expect(result.1.first).to(equal(selections.first))
             }
             
         }
         
         describe("pasting to a single-line selection") {
 
-            let start = Cursor(line: 0, column: 5)
-            let end = Cursor(line: 0, column: lines.first!.characters.count)
-            let selections = [Selection(start: start, end: end)]
+            let start = TextPosition(line: 0, column: 5)
+            let end = TextPosition(line: 0, column: lines.first!.characters.count)
+            let selections = [TextRange(start: start, end: end)]
 
             context("the string has newlines") {
                 
@@ -158,16 +153,16 @@ class ColumnCloningPasteSpec: QuickSpec {
 
                 // then
                 expect(result.1).to(haveCount(1))
-                expect(result.1.first! == Selection(start: start, end: start)).to(beTrue())
+                expect(result.1.first).to(equal(TextRange(start: start, end: start)))
             }
             
         }
         
         describe("pasting to a multiline selection") {
 
-            let start = Cursor(line: 0, column: 5)
-            let end = Cursor(line: 2, column: 2)
-            let selections = [Selection(start: start, end: end)]
+            let start = TextPosition(line: 0, column: 5)
+            let end = TextPosition(line: 2, column: 2)
+            let selections = [TextRange(start: start, end: end)]
 
             context("the string has newlines") {
                 
@@ -275,19 +270,19 @@ class ColumnCloningPasteSpec: QuickSpec {
                 
                 // then
                 expect(result.1).to(haveCount(1))
-                expect(result.1.first! == Selection(start: start, end: start)).to(beTrue())
+                expect(result.1.first).to(equal(TextRange(start: start, end: start)))
             }
 
         }
         
         describe("pasting to a noncontinuous multiselection") {
 
-            let start1 = Cursor(line: 0, column: 2)
-            let end1 = Cursor(line: 0, column: 5)
-            let start2 = Cursor(line: 2, column: 2)
-            let end2 = Cursor(line: 2, column: 5)
-            let selections = [Selection(start: start1, end: end1),
-                              Selection(start: start2, end: end2)]
+            let start1 = TextPosition(line: 0, column: 2)
+            let end1 = TextPosition(line: 0, column: 5)
+            let start2 = TextPosition(line: 2, column: 2)
+            let end2 = TextPosition(line: 2, column: 5)
+            let selections = [TextRange(start: start1, end: end1),
+                              TextRange(start: start2, end: end2)]
 
             context("the string has newlines") {
                 
@@ -395,7 +390,7 @@ class ColumnCloningPasteSpec: QuickSpec {
                 
                 // then
                 expect(result.1).to(haveCount(1))
-                expect(result.1.first! == Selection(start: start1, end: start1)).to(beTrue())
+                expect(result.1.first).to(equal(TextRange(start: start1, end: start1)))
             }
 
         }

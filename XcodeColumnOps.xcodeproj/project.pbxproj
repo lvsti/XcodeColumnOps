@@ -26,6 +26,7 @@
 		E8A934311E6B2E93007B391D /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9342F1E6B2E93007B391D /* Quick.framework */; };
 		E8A934331E6B441A007B391D /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8A9342E1E6B2E93007B391D /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8A934341E6B441A007B391D /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E8A9342F1E6B2E93007B391D /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8C3995E1E6CAAF000BB4318 /* Text+XcodeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C3995D1E6CAAF000BB4318 /* Text+XcodeKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		E8A9342B1E6B2DAD007B391D /* ColumnPaste.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColumnPaste.swift; sourceTree = "<group>"; };
 		E8A9342E1E6B2E93007B391D /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = SOURCE_ROOT; };
 		E8A9342F1E6B2E93007B391D /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = SOURCE_ROOT; };
+		E8C3995D1E6CAAF000BB4318 /* Text+XcodeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Text+XcodeKit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				E81EC28B1E6C66F600E84EB6 /* Text.swift */,
 				E8A934151E6B2B73007B391D /* Info.plist */,
 				E8A9340F1E6B2B73007B391D /* Supporting Files */,
+				E8C3995D1E6CAAF000BB4318 /* Text+XcodeKit.swift */,
 			);
 			path = XcodeColumnOpsExtension;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8C3995E1E6CAAF000BB4318 /* Text+XcodeKit.swift in Sources */,
 				E81EC2891E6C646400E84EB6 /* ColumnCloningPaste.swift in Sources */,
 				E81EC28C1E6C66F600E84EB6 /* Text.swift in Sources */,
 				E8A9342C1E6B2DAD007B391D /* ColumnPaste.swift in Sources */,

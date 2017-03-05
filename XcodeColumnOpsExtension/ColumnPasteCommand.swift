@@ -13,7 +13,6 @@ enum ColumnPasteError: Error {
     case unrecognizedContent
 }
 
-extension XCSourceTextPosition: TextPosition {}
 
 class ColumnPasteCommand: NSObject, XCSourceEditorCommand {
     
@@ -35,7 +34,7 @@ class ColumnPasteCommand: NSObject, XCSourceEditorCommand {
         
         let lines = (invocation.buffer.lines as [AnyObject]) as! [String]
         let cursorRange = invocation.buffer.selections.firstObject as! XCSourceTextRange
-        let position = cursorRange.start
+        let position = TextPosition(xcPosition: cursorRange.start)
 
         let updatedLines = columnPaste.paste(strings, into: lines, at: position)
         let changedLines = Array(updatedLines[position.line ..< position.line + strings.count])

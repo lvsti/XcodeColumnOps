@@ -9,10 +9,6 @@
 import Quick
 import Nimble
 
-struct Cursor: TextPosition {
-    var line: Int
-    var column: Int
-}
 
 class ColumnPasteSpec: QuickSpec {
 
@@ -40,7 +36,7 @@ class ColumnPasteSpec: QuickSpec {
                 
                 it("appends the string to the end") {
                     // when
-                    result = sut.paste(strings, into: lines, at: Cursor(line: lines.count - 1, column: lines.last!.characters.count))
+                    result = sut.paste(strings, into: lines, at: TextPosition(line: lines.count - 1, column: lines.last!.characters.count))
                     
                     // then
                     expect(result).to(equal([
@@ -57,7 +53,7 @@ class ColumnPasteSpec: QuickSpec {
                 
                 it("inserts the string at the cursor") {
                     // when
-                    result = sut.paste(strings, into: lines, at: Cursor(line: 0, column: 2))
+                    result = sut.paste(strings, into: lines, at: TextPosition(line: 0, column: 2))
                     
                     // then
                     expect(result).to(equal([
@@ -78,7 +74,7 @@ class ColumnPasteSpec: QuickSpec {
 
             context("at the end of file") {
                 
-                let cursor = Cursor(line: lines.count - 1, column: lines.last!.characters.count)
+                let cursor = TextPosition(line: lines.count - 1, column: lines.last!.characters.count)
                 
                 it("appends the first string to the last line with a terminating newline") {
                     // when
@@ -127,7 +123,7 @@ class ColumnPasteSpec: QuickSpec {
             
             context("at an inner location") {
                 
-                let cursor = Cursor(line: 0, column: 2)
+                let cursor = TextPosition(line: 0, column: 2)
                 let overflowingStrings = ["RED", "GREEN", "BLUE", "YELLOW", "BROWN"]
                 
                 it("inserts the first string at the cursor") {
