@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E81EC2871E6C4E8000E84EB6 /* UT_ColumnCloningPaste.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81EC2861E6C4E8000E84EB6 /* UT_ColumnCloningPaste.swift */; };
 		E8A933FA1E6B2B48007B391D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A933F91E6B2B48007B391D /* AppDelegate.swift */; };
 		E8A933FC1E6B2B48007B391D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8A933FB1E6B2B48007B391D /* Assets.xcassets */; };
 		E8A933FF1E6B2B48007B391D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8A933FD1E6B2B48007B391D /* MainMenu.xib */; };
@@ -59,6 +60,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E81EC2861E6C4E8000E84EB6 /* UT_ColumnCloningPaste.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UT_ColumnCloningPaste.swift; sourceTree = "<group>"; };
 		E8A933F61E6B2B47007B391D /* XcodeColumnOps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeColumnOps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A933F91E6B2B48007B391D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8A933FB1E6B2B48007B391D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				E8A9342E1E6B2E93007B391D /* Nimble.framework */,
 				E8A9342F1E6B2E93007B391D /* Quick.framework */,
 				E8A934231E6B2C4F007B391D /* UT_ColumnPaste.swift */,
+				E81EC2861E6C4E8000E84EB6 /* UT_ColumnCloningPaste.swift */,
 				E8A934251E6B2C4F007B391D /* Info.plist */,
 			);
 			path = XcodeColumnOpsTests;
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E81EC2871E6C4E8000E84EB6 /* UT_ColumnCloningPaste.swift in Sources */,
 				E8A934241E6B2C4F007B391D /* UT_ColumnPaste.swift in Sources */,
 				E8A9342D1E6B2DAD007B391D /* ColumnPaste.swift in Sources */,
 			);
